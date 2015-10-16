@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<!--[if IE]>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+	<![endif]-->
+	<meta charset="utf-8"/>
+	<title>ぷかぷか</title>
+	<meta name="description" content="" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="viewport" content="width=device-width" />
+	<meta property="og:title" content="ただしか" />
+	<meta property="og:type" content="article" />
+	<meta property="og:url" content="http://sleep75948.sakura.ne.jp/pukapuka/" />
+	<meta property="og:image" content="" />
+	<meta property="og:site_name" content="&#9822;" />
+	<meta property="og:description" content="" />
+	<meta property="og:locale" content="ja_JP" />
+	<link rel="stylesheet" type="text/css" href="./css/pukapuka.min.css" media="all" />
+</head>
+<body class="lower withSandBox pukapuka">
+	<div class="wrapper">
+		<article>
+			<h1>ぷかぷか</h1>
+			<ul>
+				<li>JavaScript</li>
+				<li>Geolocation</li>
+				<li>Google Maps JavaScript API v3</li>
+			</ul>
+			<div id="world" class="sandBox"></div>
+		</article>
+		<div id="objects">
+			<img src="./img/balloon.png" alt="" id="balloon" class="balloon none" />
+			<img src="./img/man01.png" alt="" id="man01" class="man none" />
+			<img src="./img/man02.png" alt="" id="man02" class="man none" />
+			<img src="./img/man03.png" alt="" id="man03" class="man none" />
+			<img src="./img/man04.png" alt="" id="man04" class="man none" />
+			<div id="shadow"></div>
+		</div>
+		<div class="control">
+			<div id="up" class="cross">↑</div>
+			<div id="right" class="cross">→</div>
+			<div id="down" class="cross">↓</div>
+			<div id="left" class="cross">←</div>
+			<div id="buttonA" class="button">A</div>
+			<div id="buttonB" class="button">B</div>
+		</div>
+		<!--#include virtual="../../common/include/nav.html" -->
+		<!--#include virtual="../../common/include/footer.html" -->
+	</div>
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4I5ZT8gTo_dMn1e0EeJhak0xrR7K6-MI">-->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script type="text/javascript" src="/common/js/lib.js"></script>
+	<script type="text/javascript" src="/common/js/event.js"></script>
+	<script type="text/javascript" src="/common/js/display.js"></script>
+	<script type="text/javascript" src="./js/pukapuka.js"></script>
+</body>
+</html>
