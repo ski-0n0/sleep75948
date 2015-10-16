@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+/* ------------------------------------------------------- 
+  Basic Layout
+------------------------------------------------------- */
+
+@import url('/common/css/base.min.css');
+@import url('/common/css/lower.min.css');
+
+/* ------------------------------------------------------- 
+  Mabushii Layout
+------------------------------------------------------- */
+.mabushii #space {
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:-1;
+	overflow:hidden;
+	background:rgba(60,119,185,0.4);
+	}
+	.mabushii #space .center {
+		position:absolute;
+		left:50%;
+		top:70%;
+	}
+	.mabushii #space img {
+		width:auto;
+		position:absolute;
+		border:1px solid #000;
+		}
+	.mabushii .flashLight {
+		display:none;
+		}
+	.mabushii .light01 {
+		left:143px;
+		top:340px;
+		}
+	.mabushii .light02 {
+		left:822px;
+		top:50px;
+		}
+	.mabushii .light03 {
+		left:-240px;
+		top:176px;
+		}
+	.mabushii .light04 {
+		left:808px;
+		top:138px;
+		}
+
+
+
