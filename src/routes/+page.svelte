@@ -7,7 +7,7 @@ import Menu from '../components/Menu.svelte';
 	<meta name="description" content="" />
 	<meta property="og:title" content="Tsunaki Okubo &#9822;" />
 	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://sleep75948.vercel.app/" />
+	<meta property="og:url" content="https://sleep75948-jhg8i7mzz-ski-0n0.vercel.app/" />
 	<meta property="og:image" content="" />
 	<meta property="og:site_name" content="Tsunaki Okubo &#9822;" />
 	<meta property="og:description" content="" />
