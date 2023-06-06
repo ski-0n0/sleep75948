@@ -1,4 +1,0 @@
-@charset "utf-8";@import url('/common/css/base.min.css');.home div.gnav{width:90%;height:100%;padding:5%;position:fixed;top:0;left:0;z-index:9;overflow:hidden;}
-div.gnav nav>ul>li a{display:inline;}
-footer{z-index:10;}
-

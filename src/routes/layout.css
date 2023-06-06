@@ -1,0 +1,23 @@
+:root {
+	--color-hover-lightness: 50%;
+	--color-text-default: hsla(0, 0%, 20%, 1);
+	--color-text-default-hover: hsla(0, 0%, 20%, calc(var(--color-hover-lightness)));
+	--color-text-quiet: hsla(0, 0%, 40%, 1);
+	--text-size-quiet: 1.4rem;
+  --symbol: '\265E';
+	font-size: 62.5%;
+}
+body {
+	-webkit-text-size-adjust: none;
+	font-family: serif;
+	font-size: 1.6rem;
+	color: var(--color-text-default);
+}
+a {
+	color: var(--color-text-default);
+	text-decoration: none;
+	transition: color 0.2s ease;
+}
+a:hover {
+	color: var(--color-text-default-hover);
+}
