@@ -7,7 +7,7 @@
 	<meta name="description" content="" />
 	<meta property="og:title" content="よみこむ" />
 	<meta property="og:type" content="article" />
-	<meta property="og:url" content="http://sleep75948.sakura.ne.jp/entry/yomikomu/" />
+	<meta property="og:url" content="https://sleep75948.vercel.app/entry/yomikomu/" />
 	<meta property="og:image" content="" />
 	<meta property="og:site_name" content="よみこむ" />
 	<meta property="og:description" content="" />
