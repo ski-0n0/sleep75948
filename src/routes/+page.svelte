@@ -1,5 +1,5 @@
 <script lang="ts">
-import Menu from '../components/Menu.svelte';
+	import Menu from '../components/Menu.svelte';
 </script>
 
 <svelte:head>
@@ -18,13 +18,13 @@ import Menu from '../components/Menu.svelte';
 	<h1>Tsunaki Okubo &#9822;</h1>
 	<p>UIとマークアップをしておる</p>
 	<nav>
-		<Menu/>
+		<Menu />
 	</nav>
 </main>
 
 <style>
 	.profile {
-		padding-block: 8%;
-		padding-inline: 8%;
+		padding-block: 16vh;
+		padding-inline: 8vw;
 	}
 </style>

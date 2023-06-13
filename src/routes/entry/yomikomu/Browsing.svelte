@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { destroyDisplayWatcher, displayHeight, displayWatcher, getDocumentHeight } from '$lib/display';
+	import {
+		destroyDisplayWatcher,
+		displayHeight,
+		displayWatcher,
+		getDocumentHeight
+	} from '$lib/display';
 	import { destroyScrollTopWatcher, scrollTop, scrollTopWatcher } from '$lib/scrollTop';
 	import { onDestroy, onMount } from 'svelte';
 
@@ -13,23 +18,23 @@
 	paging = paging - 1;
 	let request;
 
-	onMount(()=> {
-		scrollTopWatcher()
-		displayWatcher()
-	})
+	onMount(() => {
+		scrollTopWatcher();
+		displayWatcher();
+	});
 
-	onDestroy(()=>{
-		destroyScrollTopWatcher()
-		destroyDisplayWatcher()
+	onDestroy(() => {
+		destroyScrollTopWatcher();
+		destroyDisplayWatcher();
 		cancelAnimationFrame(request);
-	})
+	});
 
 	function loader() {
 		let point = 0,
 			i = 0;
 
 		const watch = function () {
-			console.log('watch')
+			console.log('watch');
 			if (getDocumentHeight() - 100 < scrollTop + displayHeight) {
 				page();
 			} else {
@@ -43,7 +48,7 @@
 				hideLoading();
 				return;
 			}
-			console.log((point+1)+'枚目を表示するよ');
+			console.log(point + 1 + '枚目を表示するよ');
 
 			const img = new Image();
 
@@ -72,9 +77,8 @@
 			}
 		};
 
-		page()
-
-	};
+		page();
+	}
 
 	const showLoading = () => {
 		loading.style.display = 'block';

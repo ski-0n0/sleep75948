@@ -1,7 +1,7 @@
-
 <dl class="menu">
 	<dt class="type">Sandbox</dt>
 	<dd><a href="/entry/yomikomu/">よみこむ</a></dd>
+	<dd><a href="/entry/bukubuku/">ぶくぶく</a></dd>
 </dl>
 <dl class="menu">
 	<dt class="type">SNS</dt>
@@ -11,11 +11,13 @@
 </dl>
 
 <style>
-  .menu {
-    margin-block-start: min(4%, 28px);
-  }
-  .type {
-    color: var(--color-text-quiet);
-    font-size: var(--text-size-quiet);
-  }
+	.menu {
+		position: relative;
+		z-index: var(--zIndex-menu);
+		margin-block-start: min(2vh, 28px);
+	}
+	.type {
+		color: var(--color-text-quiet);
+		font-size: var(--text-size-quiet);
+	}
 </style>

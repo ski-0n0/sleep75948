@@ -23,4 +23,4 @@ export const scrollTopWatcher = () => {
 
 export const destroyScrollTopWatcher = () => {
 	window.removeEventListener('scroll', watcher);
-}
+};

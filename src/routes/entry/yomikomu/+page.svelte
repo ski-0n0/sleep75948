@@ -22,13 +22,3 @@
 	</ul>
 	<Browsing src="/img/entry/yomikomu/" max="30" paging="4" />
 </main>
-
-<style>
-	.notes {
-		margin-block: 2% 2%;
-	}
-	.note {
-		margin-inline-start: 1em;
-		list-style-type: '- ';
-	}
-</style>

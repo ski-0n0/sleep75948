@@ -1,0 +1,7 @@
+.notes {
+	margin-block: 2vh 2vw;
+}
+.note {
+	margin-inline-start: 1em;
+	list-style-type: '- ';
+}

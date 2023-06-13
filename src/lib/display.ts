@@ -56,4 +56,4 @@ export const displayWatcher = () => {
 
 export const destroyDisplayWatcher = () => {
 	window.removeEventListener('resize', watcher);
-}
+};

@@ -3,8 +3,13 @@
 	--color-text-default: hsla(0, 0%, 20%, 1);
 	--color-text-default-hover: hsla(0, 0%, 20%, calc(var(--color-hover-lightness)));
 	--color-text-quiet: hsla(0, 0%, 40%, 1);
+	--color-sarface-default: hsla(0, 0%, 88%, 1);
 	--text-size-quiet: 1.4rem;
-  --symbol: '\265E';
+	--zIndex-menu: 100;
+	--zIndex-openMenuTrigger: 200;
+	--symbol: '\265E';
+	// --breakPoint-small: 320px;
+	// --breakPoint-midium: 820px;
 	font-size: 62.5%;
 }
 body {
