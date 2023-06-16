@@ -12,6 +12,7 @@
 	<meta property="og:site_name" content="Tsunaki Okubo &#9822;" />
 	<meta property="og:description" content="" />
 	<meta property="og:locale" content="ja_JP" />
+	<link rel="canonical" href="https://sleep75948.vercel.app/" />
 </svelte:head>
 
 <main class="profile">

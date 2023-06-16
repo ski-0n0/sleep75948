@@ -16,7 +16,11 @@
 		clear: Function;
 	};
 
-	let canvas, request, c2d;
+	let canvas: HTMLCanvasElement,
+		c2d: CanvasRenderingContext2D,
+		request: number,
+		bubbles: Bubble[] = [],
+		prevCoord: { x: number; y: number };
 
 	if (browser) {
 		onMount(() => {
@@ -32,25 +36,16 @@
 		});
 	}
 
-	let bubbles: Bubble[] = [],
-		prevCoord: { x: number; y: number },
-		createBubble,
-		updateBubble,
-		clearBubble,
-		click,
-		drag,
-		watch;
-
-	createBubble = function (_opt: { x: number; y: number }) {
-		let opt = _opt || { x: 0, y: 0 },
-			obj: Bubble = { update: Function, stroke: Function, clear: Function },
+	const createBubble = function (_opt?: { x: number; y: number }) {
+		const opt = _opt || { x: 0, y: 0 },
+			angle = Math.random() < 0.5 ? 1 : -1,
+			radius = Math.floor(Math.random() * 5);
+		let obj: Bubble = { update: Function, stroke: Function, clear: Function },
 			x = opt.x || Math.floor(Math.random() * displayWidth),
 			y = opt.y || displayHeight,
-			radius = Math.floor(Math.random() * 5),
 			progress = Math.random(),
-			span = Math.random() * 360,
-			angle = Math.random() < 0.5 ? 1 : -1,
-			quiver = Math.random();
+			quiver = Math.random(),
+			span = Math.random() * 360;
 
 		progress = progress < 0.3 ? 0.3 : progress;
 
@@ -86,7 +81,7 @@
 		return obj;
 	};
 
-	updateBubble = function () {
+	const updateBubble = function () {
 		let temp = [];
 
 		if (Math.random() < 0.01) {
@@ -101,20 +96,20 @@
 		bubbles = temp;
 	};
 
-	clearBubble = function () {
+	const clearBubble = function () {
 		for (let i = 0; i < bubbles.length; i++) {
 			bubbles[i].clear();
 		}
 	};
 
-	watch = function () {
+	const watch = function () {
 		//c2d.clearRect(0, 0, display.width, display.height);
 		clearBubble();
 		updateBubble();
 		request = requestAnimationFrame(watch);
 	};
 
-	click = function (_e) {
+	const click = function (_e) {
 		let e = _e.touches ? _e.touches[0] : _e,
 			n = Math.floor(Math.random() * (300 < bubbles.length ? 2 : 10) + 5),
 			later;
@@ -133,7 +128,8 @@
 		}
 	};
 
-	drag = function (_e) {
+	const drag = function (_e) {
+		console.log(_e);
 		let e = _e.touches ? _e.touches[0] : _e,
 			n = Math.floor(Math.random() * (300 < bubbles.length ? 1 : 2)),
 			touchCoord = { x: e.pageX - 0, y: e.pageY - 0 };
@@ -164,6 +160,7 @@
 	<meta property="og:site_name" content="ぶくぶく &#9822;" />
 	<meta property="og:description" content="" />
 	<meta property="og:locale" content="ja_JP" />
+	<link rel="canonical" href="https://sleep75948.vercel.app/entry/bukubuku" />
 </svelte:head>
 
 <main>
@@ -187,9 +184,6 @@
 	.inner {
 		position: relative;
 		z-index: 2;
-	}
-	.voice {
-		margin-block: 2vh 2vw;
 	}
 	canvas {
 		position: absolute;
