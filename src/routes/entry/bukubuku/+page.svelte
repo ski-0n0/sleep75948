@@ -198,6 +198,9 @@
 		on:pointerdown={pointerDown}
 		on:pointerup={pointerUp}
 		on:pointermove|capture={pointerMove}
+		on:touchstart={pointerDown}
+		on:touchend={pointerUp}
+		on:touchmove|capture={pointerMove}
 	/>
 </main>
 
