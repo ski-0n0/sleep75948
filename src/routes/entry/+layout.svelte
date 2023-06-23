@@ -30,6 +30,10 @@
 	.hamburger {
 		display: none;
 	}
+	.nav {
+		position: relative;
+		z-index: var(--zIndex-menu);
+	}
 	.knight {
 		font-size: 4rem;
 	}

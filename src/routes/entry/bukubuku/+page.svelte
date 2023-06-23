@@ -16,11 +16,17 @@
 		clear: Function;
 	};
 
+	type Coord = {
+		x: number;
+		y: number;
+	};
+
 	let canvas: HTMLCanvasElement,
 		c2d: CanvasRenderingContext2D,
 		request: number,
 		bubbles: Bubble[] = [],
-		prevCoord: { x: number; y: number };
+		prevCoord: Coord = { x: 0, y: 0 },
+		drugProcess = false;
 
 	if (browser) {
 		onMount(() => {
@@ -128,24 +134,33 @@
 		}
 	};
 
-	const drag = function (_e) {
-		console.log(_e);
-		let e = _e.touches ? _e.touches[0] : _e,
-			n = Math.floor(Math.random() * (300 < bubbles.length ? 1 : 2)),
-			touchCoord = { x: e.pageX - 0, y: e.pageY - 0 };
+	const pointerDown = () => {
+		drugProcess = true;
+	};
 
-		if (prevCoord.x !== touchCoord.x || prevCoord.y !== touchCoord.y) {
-			if (Math.random() < 1.0) {
-				for (let i = 0; i < n; i++) {
-					bubbles.push(
-						createBubble({
-							x: touchCoord.x + Math.random() * 40 - 20,
-							y: touchCoord.y + Math.random() * 40 - 20
-						})
-					);
+	const pointerUp = () => {
+		drugProcess = false;
+	};
+
+	const pointerMove = function (_e) {
+		if (drugProcess) {
+			let e = _e.touches ? _e.touches[0] : _e,
+				n = Math.floor(Math.random() * (300 < bubbles.length ? 1 : 2)),
+				touchCoord: Coord = { x: e.pageX - 0, y: e.pageY - 0 };
+
+			if (prevCoord.x !== touchCoord.x || prevCoord.y !== touchCoord.y) {
+				if (Math.random() < 1.0) {
+					for (let i = 0; i < n; i++) {
+						bubbles.push(
+							createBubble({
+								x: touchCoord.x + Math.random() * 40 - 20,
+								y: touchCoord.y + Math.random() * 40 - 20
+							})
+						);
+					}
 				}
+				prevCoord = touchCoord;
 			}
-			prevCoord = touchCoord;
 		}
 	};
 </script>
@@ -177,7 +192,13 @@
 			<li class="note">さんすうはわからない</li>
 		</ul>
 	</div>
-	<canvas bind:this={canvas} on:click={click} on:drag|capture={drag} />
+	<canvas
+		bind:this={canvas}
+		on:click={click}
+		on:pointerdown={pointerDown}
+		on:pointerup={pointerUp}
+		on:pointermove|capture={pointerMove}
+	/>
 </main>
 
 <style>
