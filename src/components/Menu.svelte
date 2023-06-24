@@ -1,6 +1,7 @@
 <dl class="menu">
 	<dt class="type">Sandbox</dt>
 	<dd><a href="/entry/yomikomu">よみこむ</a></dd>
+	<dd><a href="/entry/mabushii">まぶしい</a></dd>
 	<dd><a href="/entry/bukubuku">ぶくぶく</a></dd>
 </dl>
 <dl class="menu">
