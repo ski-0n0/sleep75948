@@ -21,5 +21,5 @@
 		<li class="note">JavaScript</li>
 		<li class="note">4枚づつ30枚まで画像を読み込む</li>
 	</ul>
-	<Browsing src="/img/entry/yomikomu/" max="30" paging="4" />
+	<Browsing src="/img/entry/yomikomu/" max={30} paging={4} />
 </main>

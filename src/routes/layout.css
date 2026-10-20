@@ -8,8 +8,8 @@
 	--zIndex-menu: 100;
 	--zIndex-openMenuTrigger: 200;
 	--symbol: '\265E';
-	// --breakPoint-small: 320px;
-	// --breakPoint-midium: 820px;
+	/* --breakPoint-small: 320px; */
+	/* --breakPoint-midium: 820px; */
 	font-size: 62.5%;
 }
 body {

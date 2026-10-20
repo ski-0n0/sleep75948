@@ -1,19 +1,24 @@
 <script lang="ts">
 	import './layout.css';
 	import Menu from '../../components/Menu.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <div class="wrapper">
 	<header class="header">
 		<input type="checkbox" id="hamburger" class="hamburger" />
-		<label class="potato" for="hamburger" />
+		<label class="potato" for="hamburger"></label>
 		<nav class="nav">
 			<p class="knight"><a href="/">&#9822;</a></p>
 			<Menu />
 		</nav>
 	</header>
 	<div class="main">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 
@@ -61,8 +66,6 @@
 			margin-block-start: -0.4rem;
 			font-size: 4rem;
 			content: var(--symbol);
-		}
-		.hamburger:checked + .potato {
 		}
 		.hamburger:checked + .potato:before {
 			font-size: 2.4rem;

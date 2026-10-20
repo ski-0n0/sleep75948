@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { delay } from '$lib/delay';
+	import { browser } from '$app/env';
+	import { delay } from '#lib/delay.js';
 	import {
 		addMaximizeObject,
 		destroyDisplayWatcher,
 		displayHeight,
 		displayWatcher,
 		displayWidth
-	} from '$lib/display';
+	} from '#lib/display.js';
 	import { onDestroy, onMount } from 'svelte';
 
 	type Bubble = {
@@ -30,7 +30,7 @@
 
 	if (browser) {
 		onMount(() => {
-			c2d = canvas.getContext('2d');
+			c2d = canvas.getContext('2d')!;
 			displayWatcher();
 			addMaximizeObject(canvas);
 			watch();
@@ -115,10 +115,10 @@
 		request = requestAnimationFrame(watch);
 	};
 
-	const click = function (_e) {
-		let e = _e.touches ? _e.touches[0] : _e,
+	const click = function (_e: MouseEvent | TouchEvent) {
+		let e = 'touches' in _e ? _e.touches[0] : _e,
 			n = Math.floor(Math.random() * (300 < bubbles.length ? 2 : 10) + 5),
-			later;
+			later: () => void;
 
 		later = function () {
 			bubbles.push(
@@ -142,9 +142,9 @@
 		drugProcess = false;
 	};
 
-	const pointerMove = function (_e) {
+	const pointerMove = function (_e: PointerEvent | TouchEvent) {
 		if (drugProcess) {
-			let e = _e.touches ? _e.touches[0] : _e,
+			let e = 'touches' in _e ? _e.touches[0] : _e,
 				n = Math.floor(Math.random() * (300 < bubbles.length ? 1 : 2)),
 				touchCoord: Coord = { x: e.pageX - 0, y: e.pageY - 0 };
 
@@ -194,14 +194,14 @@
 	</div>
 	<canvas
 		bind:this={canvas}
-		on:click={click}
-		on:pointerdown={pointerDown}
-		on:pointerup={pointerUp}
-		on:pointermove|capture={pointerMove}
-		on:touchstart={pointerDown}
-		on:touchend={pointerUp}
-		on:touchmove|capture={pointerMove}
-	/>
+		onclick={click}
+		onpointerdown={pointerDown}
+		onpointerup={pointerUp}
+		onpointermovecapture={pointerMove}
+		ontouchstart={pointerDown}
+		ontouchend={pointerUp}
+		ontouchmovecapture={pointerMove}
+	></canvas>
 </main>
 
 <style>

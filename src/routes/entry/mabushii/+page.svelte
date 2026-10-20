@@ -1,13 +1,13 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
+	import { browser } from '$app/env';
 	import { onDestroy, onMount } from 'svelte';
 	import {
 		addMaximizeObject,
 		destroyDisplayWatcher,
 		displayWatcher,
 		displayWidth
-	} from '$lib/display';
-	import { easing } from '$lib/easing';
+	} from '#lib/display.js';
+	import { easing } from '#lib/easing.js';
 
 	if (browser) {
 		onMount(() => {
@@ -35,28 +35,34 @@
 		});
 	}
 
-	let space,
-		light01,
-		light02,
-		light03,
-		light04,
-		flash01,
-		flash02,
-		flash03,
-		flash04,
-		flash01show = false,
-		flash02show = false,
-		flash03show = false,
-		flash04show = false,
-		moveLights = [],
-		_moveLights = [],
-		flashLights = [],
+	let space: HTMLDivElement,
+		light01: HTMLImageElement,
+		light02: HTMLImageElement,
+		light03: HTMLImageElement,
+		light04: HTMLImageElement,
+		flash01: HTMLImageElement,
+		flash02: HTMLImageElement,
+		flash03: HTMLImageElement,
+		flash04: HTMLImageElement,
+		flash01show = $state(false),
+		flash02show = $state(false),
+		flash03show = $state(false),
+		flash04show = $state(false),
+		moveLights: ((nowX: number) => void)[] = [],
+		_moveLights: HTMLImageElement[] = [],
+		flashLights: HTMLImageElement[] = [],
 		oX = 63,
 		oY = 50,
 		prevPoint = 0;
 
-	const moveLight = function (obj, width, radius, degreeDistance, degreeDefault) {
-		return function (nowX) {
+	const moveLight = function (
+		obj: HTMLElement,
+		width: number,
+		radius: number,
+		degreeDistance: number,
+		degreeDefault: number
+	) {
+		return function (nowX: number) {
 			let radian =
 				(easing.easeInOutSine(0, nowX, 0, degreeDistance, 100) + degreeDefault) * (Math.PI / 180);
 
@@ -66,8 +72,9 @@
 		};
 	};
 
-	const pointerMove = function (e) {
-		let nowX = Math.floor(e.pageX / (displayWidth * 0.01));
+	const pointerMove = function (e: { pageX: number } | TouchEvent) {
+		const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
+		let nowX = Math.floor(pageX / (displayWidth * 0.01));
 
 		for (let i = 0; i < moveLights.length; i++) moveLights[i](nowX);
 
@@ -195,7 +202,8 @@
 		top: 0;
 		z-index: -1;
 		overflow: hidden;
-		background: url('/img/entry/mabushii/bg_01.png') 50% 28vh no-repeat,
+		background:
+			url('/img/entry/mabushii/bg_01.png') 50% 28vh no-repeat,
 			linear-gradient(rgba(60, 119, 185, 0.4), #fff 28%);
 		background-size: cover;
 	}

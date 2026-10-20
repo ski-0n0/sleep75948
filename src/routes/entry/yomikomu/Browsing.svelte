@@ -4,30 +4,40 @@
 		displayHeight,
 		displayWatcher,
 		getDocumentHeight
-	} from '$lib/display';
-	import { destroyScrollTopWatcher, scrollTop, scrollTopWatcher } from '$lib/scrollTop';
+	} from '#lib/display.js';
+	import { destroyScrollTopWatcher, scrollTop, scrollTopWatcher } from '#lib/scrollTop.js';
+	import { browser } from '$app/env';
 	import { onDestroy, onMount } from 'svelte';
 
-	export let src: string;
-	export let max: number;
-	export let paging: number;
+	interface Props {
+		src: string;
+		max: number;
+		paging: number;
+	}
 
-	let target, frame, loading, trigger;
+	let { src, max, paging }: Props = $props();
 
-	max = max - 1;
-	paging = paging - 1;
-	let request;
+	let target: HTMLDivElement,
+		frame: HTMLDivElement,
+		loading: HTMLDivElement,
+		trigger: HTMLButtonElement;
 
-	onMount(() => {
-		scrollTopWatcher();
-		displayWatcher();
-	});
+	const maxIndex = $derived(max - 1);
+	const pagingIndex = $derived(paging - 1);
+	let request: number;
 
-	onDestroy(() => {
-		destroyScrollTopWatcher();
-		destroyDisplayWatcher();
-		cancelAnimationFrame(request);
-	});
+	if (browser) {
+		onMount(() => {
+			scrollTopWatcher();
+			displayWatcher();
+		});
+
+		onDestroy(() => {
+			destroyScrollTopWatcher();
+			destroyDisplayWatcher();
+			cancelAnimationFrame(request);
+		});
+	}
 
 	function loader() {
 		let point = 0,
@@ -44,7 +54,7 @@
 		};
 
 		const page = function () {
-			if (max < point) {
+			if (maxIndex < point) {
 				hideLoading();
 				return;
 			}
@@ -62,7 +72,7 @@
 			img.setAttribute('src', src + 'browsing_' + (point < 10 ? '0' + point : point) + '.png');
 			img.setAttribute('class', 'pages');
 
-			if (i < paging) {
+			if (i < pagingIndex) {
 				i++;
 				img.addEventListener('load', function () {
 					add();
@@ -95,11 +105,11 @@
 </script>
 
 <div bind:this={target} class="target">
-	<div bind:this={frame} class="frame" />
+	<div bind:this={frame} class="frame"></div>
 	<div bind:this={loading} class="loading">
-		<img src="/img/entry/yomikomu/loader.gif" />
+		<img src="/img/entry/yomikomu/loader.gif" alt="" />
 	</div>
-	<button bind:this={trigger} class="trigger" on:click={handleOnClick}>よみこむ？</button>
+	<button bind:this={trigger} class="trigger" onclick={handleOnClick}>よみこむ？</button>
 </div>
 
 <style>
@@ -114,7 +124,9 @@
 		border-left: 1px solid #fff;
 		border-right: 1px solid #ccc;
 		border-bottom: 1px solid #ccc;
-		box-shadow: -1px -1px 1px rgba(000, 000, 000, 0.2), 1px 1px 1px rgba(255, 255, 255, 1);
+		box-shadow:
+			-1px -1px 1px rgba(000, 000, 000, 0.2),
+			1px 1px 1px rgba(255, 255, 255, 1);
 		cursor: pointer;
 	}
 	.loading {
